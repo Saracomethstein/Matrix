@@ -1,7 +1,6 @@
 #include "../matrix.h"
 
-void minor_matrix(int rows, int columns, matrix_t *matrix,
-                      matrix_t *minor) {
+void minor_matrix(int rows, int columns, matrix_t *matrix, matrix_t *minor) {
   int rows_i = 0;
   int columns_j = 0;
   create_matrix(matrix->rows - 1, matrix->columns - 1, minor);

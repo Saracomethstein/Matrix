@@ -16,13 +16,13 @@ LDFLAGS=-g2
 SRCS = $(wildcard $(TOOLS_FILE) $(MATRIX_FILE))
 SRCS_TEST = $(wildcard $(TOOLS_FILE) $(MATRIX_FILE) $(TEST_FILE))
 
-all: $(OBJS) s21_matrix.a
+all: $(OBJS) matrix.a
 
 test: $(SRCS_TEST)
 	@$(CC) -o $@ $(TEST_FLAGS) `pkg-config --cflags --libs check` $(SRCS_TEST)
 	@./test
 
-s21_matrix.a:
+matrix.a:
 	$(CC) $(FLAGS) -c $(SRCS)
 	@ar rc $@ ./*.o
 	ranlib $@
@@ -33,8 +33,8 @@ gcov_report: test
 	@genhtml -o ./ gcov_report.info
 	@open ./index-sort-f.html
 
-main: s21_matrix.h $(MAIN_FILE) $(TOOLS_FILE) $(MATRIX_FILE)
-	@$(CC) $(FLAGS) s21_matrix.h $(MAIN_FILE) $(TOOLS_FILE) $(MATRIX_FILE) -o manual_test.out
+main: matrix.h $(MAIN_FILE) $(TOOLS_FILE) $(MATRIX_FILE)
+	@$(CC) $(FLAGS) matrix.h $(MAIN_FILE) $(TOOLS_FILE) $(MATRIX_FILE) -o manual_test.out
 	@./manual_test.out
 
 style:
@@ -43,7 +43,7 @@ style:
 clang:
 	@clang-format --style=Google -n $(MAIN_FILE) $(TOOLS_FILE) $(MATRIX_FILE) $(TEST_FILE)
 
-.PHONY: clean s21_matrix.a gcov_report clang test
+.PHONY: clean matrix.a gcov_report clang test
 clean:
-	@rm -rf s21_matrix.a tools/*.o manual_test/*.o matrix_operations/*.o manual_test.out *.o *.gcno *.gcda test \
+	@rm -rf matrix.a tools/*.o manual_test/*.o matrix_operations/*.o manual_test.out *.o *.gcno *.gcda test \
 	tests/*.html matrix_operations/*.html tools/*.html *.gcov *.png *.css *.info cmd_line *.html
