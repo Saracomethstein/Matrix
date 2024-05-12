@@ -1,10 +1,10 @@
-#include "../s21_matrix.h"
+#include "../matrix.h"
 
-void s21_minor_matrix(int rows, int columns, matrix_t *matrix,
+void minor_matrix(int rows, int columns, matrix_t *matrix,
                       matrix_t *minor) {
   int rows_i = 0;
   int columns_j = 0;
-  s21_create_matrix(matrix->rows - 1, matrix->columns - 1, minor);
+  create_matrix(matrix->rows - 1, matrix->columns - 1, minor);
 
   for (int i = 0; i < minor->rows; ++i) {
     if (i == rows) rows_i++;

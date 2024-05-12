@@ -1,11 +1,11 @@
-#include "../s21_matrix.h"
+#include "../matrix.h"
 
-int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result) {
-  int answer = S21_SUCCESS;
+int mul_matrix(matrix_t *A, matrix_t *B, matrix_t *result) {
+  int answer = SUCCESS;
 
-  if (!s21_correct_matrix(A) && !s21_correct_matrix(B)) {
+  if (!correct_matrix(A) && !correct_matrix(B)) {
     if (A->columns == B->rows) {
-      s21_create_matrix(A->rows, B->columns, result);
+      create_matrix(A->rows, B->columns, result);
       for (int i = 0; i < A->rows; ++i) {
         for (int j = 0; j < B->columns; ++j) {
           for (int k = 0; k < B->rows; ++k) {
@@ -15,10 +15,10 @@ int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result) {
       }
 
     } else {
-      answer = S21_FAILURE;
+      answer = FAILURE;
     }
   } else {
-    answer = S21_NOTCORRECT;
+    answer = NOT_CORRECT;
   }
 
   return answer;

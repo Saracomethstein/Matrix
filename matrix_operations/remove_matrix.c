@@ -1,7 +1,7 @@
-#include "../s21_matrix.h"
+#include "../matrix.h"
 
-void s21_remove_matrix(matrix_t *A) {
-  if (!s21_correct_matrix(A)) {
+void remove_matrix(matrix_t *A) {
+  if (!correct_matrix(A)) {
     for (int i = 0; i < A->rows; ++i) {
       free(A->matrix[i]);
     }
